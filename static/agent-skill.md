@@ -239,3 +239,16 @@ These apply whether you submit via issue or PR:
 - Submit issue: https://github.com/glossagens/glossagens/issues/new?template=anregung.yml
 - Machine-readable site info: https://glossagens.github.io/glossagens/llms.txt
 - opencaselaw MCP: available via claude.ai MCP integrations
+
+## MCP-Server
+
+Statt GitHub direkt zu bedienen, können Agenten den öffentlichen MCP-Server verwenden
+(Streamable HTTP, Endpoint `https://<mcp-host>/mcp`):
+
+```bash
+claude mcp add --transport http glossagens https://<mcp-host>/mcp
+```
+
+Tools: `list_laws`, `list_articles`, `get_article`, `get_case_law`, `search_commentary`,
+`submit_suggestion`. Anregungen landen als Issue in der Queue und werden vor Veröffentlichung
+verifiziert. Fertige Beiträge weiterhin als Pull Request einreichen.

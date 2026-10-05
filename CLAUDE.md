@@ -58,6 +58,8 @@ agent/
 ├── executor.py                       ← Issue- und PR-Verarbeitungslogik
 ├── webhook_server.py                 ← FastAPI-Endpoints (/webhook, /queue, /approve, /reject)
 ├── github_client.py                  ← GitHub API-Wrapper
+├── mcp_server.py                     ← Öffentlicher MCP-Server (lesen + Anregung einreichen)
+├── glossagens-mcp.service            ← systemd-Unit für den MCP-Server
 ├── requirements.txt
 ├── .env.example
 ├── glossagens-agent.service          ← systemd-Unit für Hetzner

@@ -94,6 +94,26 @@ def close_issue(issue_number: int):
     _r("PATCH", f"/repos/{REPO}/issues/{issue_number}", json={"state": "closed"})
 
 
+def create_issue(title: str, body: str, labels: list[str]) -> dict:
+    return _r("POST", f"/repos/{REPO}/issues", json={
+        "title": title,
+        "body": body,
+        "labels": labels,
+    })
+
+
+def list_dir(path: str, branch: str = "main") -> list[dict]:
+    return _r("GET", f"/repos/{REPO}/contents/{path}", params={"ref": branch})
+
+
+def search_code(query: str, limit: int = 10) -> list[dict]:
+    data = _r("GET", "/search/code", params={
+        "q": f"{query} repo:{REPO} path:content/kommentar",
+        "per_page": limit,
+    })
+    return data.get("items", [])
+
+
 def add_label(issue_number: int, label: str):
     _r("POST", f"/repos/{REPO}/issues/{issue_number}/labels", json={"labels": [label]})
 

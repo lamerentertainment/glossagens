@@ -1,0 +1,16 @@
+[Unit]
+Description=Glossagens MCP Server (öffentlich, hinter Reverse Proxy)
+After=network.target
+
+[Service]
+User=glossagens
+WorkingDirectory=/opt/glossagens/agent
+EnvironmentFile=/opt/glossagens/.env
+Environment=MCP_HOST=127.0.0.1
+Environment=MCP_PORT=8001
+ExecStart=/opt/glossagens/venv/bin/python mcp_server.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
